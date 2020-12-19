@@ -19,7 +19,9 @@ export const TimerContainer = styled.div`
   align-items: center;
 
   margin: 0 auto;
-
+  p {
+    margin-top: 30px;
+  }
   > div {
     display: flex;
     justify-content: center;
