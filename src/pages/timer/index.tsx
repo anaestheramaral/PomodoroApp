@@ -1,5 +1,4 @@
-/* eslint-disable no-else-return */
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { FaPlay, FaUndoAlt, FaStepForward, FaPause } from 'react-icons/fa';
 import { Circle, Container, TimerContainer } from './style';
@@ -7,9 +6,11 @@ import NavBar from '../../components/navbar';
 import Button from '../../components/button';
 
 const TimerPomodoro: React.FC = () => {
-  // const [minutes, setMinutes] = useState(60);
-  const [seconds, setSeconds] = useState(25 * 60);
+  const [seconds, setSeconds] = useState(6);
+  // const [break, setBreak] = useState(5 * 60);
+  const [label, setLabel] = useState('Focus');
   const [isRunning, setIsRunning] = useState(false);
+  const [count, setCount] = useState(1);
 
   // useEffect(() => {
   //   if (isRunning) {
@@ -24,14 +25,23 @@ const TimerPomodoro: React.FC = () => {
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (isRunning) {
+      if (isRunning && seconds > 0) {
         setSeconds(s => s - 1);
+      }
+      if (seconds === 0) {
+        handleSwitch();
+        if (label === 'Focus') {
+          alert('Time for a Break! ☕');
+        } else {
+          alert('Time to focus! 🎯');
+          setCount(c => (c % 4) + 1);
+        }
       }
     }, 1000);
     return () => {
       clearInterval(id);
     };
-  }, [isRunning]);
+  }, [isRunning, seconds]);
 
   function startTimer() {
     setIsRunning(true);
@@ -41,8 +51,32 @@ const TimerPomodoro: React.FC = () => {
   }
   function resetTimer() {
     setIsRunning(false);
-    setSeconds(25 * 60);
+
+    if (label === 'Break') {
+      if (count === 4) {
+        setSeconds(20);
+      } else {
+        setSeconds(5);
+      }
+    } else {
+      setSeconds(25 * 60);
+    }
   }
+
+  const handleSwitch = () => {
+    setIsRunning(false);
+    if (label === 'Focus') {
+      setLabel('Break');
+      if (count === 4) {
+        setSeconds(20);
+      } else {
+        setSeconds(5);
+      }
+    } else {
+      setLabel('Focus');
+      setSeconds(6);
+    }
+  };
 
   return (
     <>
@@ -54,9 +88,13 @@ const TimerPomodoro: React.FC = () => {
               <strong>
                 {`${Math.floor(seconds / 60)}:${`00${seconds % 60}`.slice(-2)}`}
               </strong>
-              <p>focus</p>
+              <p>{label}</p>
             </div>
           </Circle>
+          <p>
+            {count}
+            /4
+          </p>
           <div>
             <Button type="button" onClick={resetTimer}>
               <FaUndoAlt />
@@ -70,7 +108,15 @@ const TimerPomodoro: React.FC = () => {
               {isRunning ? <FaPause /> : <FaPlay />}
             </Button>
 
-            <Button type="button">
+            <Button
+              type="button"
+              onClick={() => {
+                handleSwitch();
+                if (label === 'Break') {
+                  setCount(c => (c % 4) + 1);
+                }
+              }}
+            >
               <FaStepForward />
             </Button>
           </div>
