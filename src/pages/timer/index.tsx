@@ -1,27 +1,19 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useEffect, useState } from 'react';
 import { FaPlay, FaUndoAlt, FaStepForward, FaPause } from 'react-icons/fa';
+import useSound from 'use-sound';
 import { Circle, Container, TimerContainer } from './style';
 import NavBar from '../../components/navbar';
 import Button from '../../components/button';
+import doneAudio from '../../assets/done-notification.mp3';
 
 const TimerPomodoro: React.FC = () => {
-  const [seconds, setSeconds] = useState(6);
-  // const [break, setBreak] = useState(5 * 60);
+  const [seconds, setSeconds] = useState(25 * 60);
   const [label, setLabel] = useState('Focus');
   const [isRunning, setIsRunning] = useState(false);
   const [count, setCount] = useState(1);
 
-  // useEffect(() => {
-  //   if (isRunning) {
-  //     const id = setInterval(
-  //       // eslint-disable-next-line no-shadow
-  //       () => setSeconds(seconds => seconds - 1),
-  //       1000,
-  //     );
-  //     return () => clearInterval(id);
-  //   } else {}
-  // }, [isRunning]);
+  const [play] = useSound(doneAudio);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -29,6 +21,7 @@ const TimerPomodoro: React.FC = () => {
         setSeconds(s => s - 1);
       }
       if (seconds === 0) {
+        play();
         handleSwitch();
         if (label === 'Focus') {
           alert('Time for a Break! ☕');
@@ -41,7 +34,7 @@ const TimerPomodoro: React.FC = () => {
     return () => {
       clearInterval(id);
     };
-  }, [isRunning, seconds]);
+  }, [isRunning, seconds, play, label]);
 
   function startTimer() {
     setIsRunning(true);
@@ -54,9 +47,9 @@ const TimerPomodoro: React.FC = () => {
 
     if (label === 'Break') {
       if (count === 4) {
-        setSeconds(20);
+        setSeconds(20 * 60);
       } else {
-        setSeconds(5);
+        setSeconds(5 * 60);
       }
     } else {
       setSeconds(25 * 60);
@@ -68,13 +61,13 @@ const TimerPomodoro: React.FC = () => {
     if (label === 'Focus') {
       setLabel('Break');
       if (count === 4) {
-        setSeconds(20);
+        setSeconds(20 * 60);
       } else {
-        setSeconds(5);
+        setSeconds(5 * 60);
       }
     } else {
       setLabel('Focus');
-      setSeconds(6);
+      setSeconds(25 * 60);
     }
   };
 

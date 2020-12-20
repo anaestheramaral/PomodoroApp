@@ -17,9 +17,11 @@
     "react-icons": "^4.1.0",
     "react-native-animated-circular-progress": "^1.0.6",
     "react-native-progress-timer": "^1.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "styled-components": "^5.2.1",
     "typescript": "^4.0.3",
+    "use-sound": "^2.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -41,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",

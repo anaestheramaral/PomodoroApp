@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaRegClock, FaUserCircle, FaRegChartBar } from 'react-icons/fa';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Container, Nav } from './style';
 
 const NavBar: React.FC = () => {
@@ -10,9 +11,9 @@ const NavBar: React.FC = () => {
         <a href="#a">
           <FaUserCircle size={32} />
         </a>
-        <a href="#a">
+        <Link to="/">
           <FaRegClock size={32} />
-        </a>
+        </Link>
         <a href="#a">
           <FaRegChartBar size={32} />
         </a>
