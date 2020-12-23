@@ -5,24 +5,44 @@ import { Link } from 'react-router-dom';
 import { Container, Nav } from './style';
 
 const NavBar: React.FC = () => {
+  const icons = {
+    LogIn: <FaUserCircle size={32} />,
+    Timer: <FaRegClock size={32} />,
+    Stats: <FaRegChartBar size={32} />,
+    Settings: <FiSettings size={32} />,
+    LogOut: <FiLogOut size={32} />,
+  };
+
   return (
     <Container>
       <Nav>
-        <a href="#a">
-          <FaUserCircle size={32} />
-        </a>
-        <Link to="/">
-          <FaRegClock size={32} />
-        </Link>
-        <a href="#a">
-          <FaRegChartBar size={32} />
-        </a>
-        <a href="#a">
-          <FiSettings size={32} />
-        </a>
-        <a href="#a">
-          <FiLogOut size={20} className="logOut" />
-        </a>
+        <ul>
+          <li>
+            <a href="#a">
+              <FaUserCircle size={32} />
+            </a>
+          </li>
+
+          <li>
+            <Link to="/">{icons.Timer}</Link>
+          </li>
+
+          <li>
+            <Link to="/settings">{icons.Settings}</Link>
+          </li>
+
+          <li>
+            <a href="#a">
+              <FaRegChartBar size={32} />
+            </a>
+          </li>
+
+          <li>
+            <a href="#a">
+              <FiLogOut size={20} className="logOut" />
+            </a>
+          </li>
+        </ul>
       </Nav>
     </Container>
   );

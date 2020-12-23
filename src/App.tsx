@@ -6,11 +6,12 @@ import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      {/* <NavBar /> */}
-      <Routes />
+    <>
+      <Router>
+        <Routes />
+      </Router>
       <GlobalStyle />
-    </Router>
+    </>
   );
 };
 
