@@ -48,14 +48,16 @@ export const Circle = styled.div`
   width: 350px;
   height: 350px;
 
-  background-color: #3f51b5;
+  /* background-color: #3f51b5; */
+  background-color: ${props => props.theme.colors.primary};
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 
   div {
-    background-color: #f2f2fa;
+    /* background-color: #f2f2fa; */
+    background-color: ${props => props.theme.colors.background};
     width: 90%;
     height: 90%;
 
@@ -64,6 +66,7 @@ export const Circle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: ${props => props.theme.colors.text};
 
     strong {
       font-size: 72px;

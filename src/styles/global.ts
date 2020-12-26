@@ -9,7 +9,8 @@ export default createGlobalStyle`
     }
 
   body{
-    background: #F2F2FA 70% ;
+    background: ${props => props.theme.colors.background};
+    color: ${props => props.theme.colors.text};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -19,7 +20,8 @@ export default createGlobalStyle`
   }
 
   strong, p {
-    color: #232129;
+    /* color: #232129; */
+    color: ${props => props.theme.colors.text};
   }
 
   /* #root{
