@@ -1,12 +1,12 @@
 import React, { createContext } from 'react';
 import { DefaultTheme } from 'styled-components';
 
-import usePersistedState from './usePersistedState';
+import usePersistedState from '../usePersistedState';
 
-import light from '../styles/themes/light';
-import dark from '../styles/themes/dark';
+import light from '../../styles/themes/light';
+import dark from '../../styles/themes/dark';
 
-import { KEY_LOCAL_STORAGE_THEME } from '../constants/localStorage';
+import { KEY_LOCAL_STORAGE_THEME } from '../../constants/localStorage';
 // import { LIGHT } from '../constants/theme';
 
 interface ThemeContextData {

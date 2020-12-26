@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import Routes from './routes';
 import GlobalStyle from './styles/global';
 
-import useToggleTheme from './hooks/useToggleTheme';
+import useToggleTheme from './hooks/theme/useToggleTheme';
 
 const App: React.FC = () => {
   // const [theme, setTheme] = useState(light);

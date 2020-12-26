@@ -4,7 +4,7 @@ import { ThemeContext } from 'styled-components';
 import Switch from 'react-switch';
 import { shade } from 'polished';
 import { Container, ControllersWrapper, Wrapper } from './style';
-import useToggleTheme from '../../hooks/useToggleTheme';
+import useToggleTheme from '../../hooks/theme/useToggleTheme';
 
 const Configs: React.FC = () => {
   const [pomodoro, setPomodoro] = useState(25);
