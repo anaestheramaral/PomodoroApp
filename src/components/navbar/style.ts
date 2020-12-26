@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
-  background-color: #3f51b5;
+  /* background-color: #3f51b5; */
+  background-color: ${props => props.theme.colors.primary};
   height: 100vh;
   width: 10vw;
 `;
@@ -27,10 +28,11 @@ export const Nav = styled.nav`
         position: relative;
         top: 100px;
         width: 60px;
-        color: #ececec;
+        color: ${props => props.theme.colors.icons};
+        /* color: #ececec; */
 
         &:hover {
-          color: ${shade(0.2, '#ececec')};
+          color: ${shade(0.2, '#a8dadc')};
         }
       }
     }

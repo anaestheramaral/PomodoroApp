@@ -26,5 +26,8 @@
   "typeRoots": [
     "node_modules/@types",
     "custom_typings/"
-  ] 
+  ],
+  "files": [
+    "src/styles/styled.d.ts"
+  ]
 }

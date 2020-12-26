@@ -23,8 +23,10 @@ export const ControllersWrapper = styled.div`
 
   > div {
     border-radius: 10px;
-    background-color: #3f51b5;
-    color: #fff;
+    /* background-color: #3f51b5; */
+    /* color: #fff; */
+    background-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.background};
     padding: 2%;
     width: 120px;
     display: flex;
