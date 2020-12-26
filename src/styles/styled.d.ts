@@ -11,6 +11,8 @@ declare module 'styled-components' {
       background: string;
       text: string;
       icons: string;
+      buttonsColor: string;
+      buttonsBkg: string;
     };
   }
 }

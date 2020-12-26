@@ -8,5 +8,7 @@ export default {
     background: '#F2F2FA',
     text: '#333',
     icons: '#a8dadc',
+    buttonsColor: '#1d3557',
+    buttonsBkg: '#F2F2FA',
   },
 };

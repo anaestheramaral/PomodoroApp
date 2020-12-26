@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 // import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 import Switch from 'react-switch';
+import { shade } from 'polished';
 import { Container, ControllersWrapper, Wrapper } from './style';
 import useToggleTheme from '../../hooks/useToggleTheme';
 
@@ -72,6 +73,8 @@ const Configs: React.FC = () => {
           id="dark"
           checked={theme.title !== 'light'}
           onChange={toggleTheme}
+          offColor={shade(0.15, theme.colors.secondary)}
+          onColor={theme.colors.primary}
         />
       </Wrapper>
     </Container>

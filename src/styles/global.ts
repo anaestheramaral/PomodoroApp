@@ -20,7 +20,8 @@ export default createGlobalStyle`
   }
 
   strong, p {
-    color: #232129;
+    /* color: #232129; */
+    color: ${props => props.theme.colors.text};
   }
 
   /* #root{

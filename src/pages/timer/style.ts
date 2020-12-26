@@ -66,6 +66,7 @@ export const Circle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: ${props => props.theme.colors.text};
 
     strong {
       font-size: 72px;

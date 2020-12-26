@@ -17,8 +17,10 @@ export const ControllersWrapper = styled.div`
   align-items: center;
   justify-content: center;
   h2,
-  button {
-    color: #ececec;
+  button,
+  span {
+    color: #f2f2fa;
+    /* color: ${props => props.theme.colors.text}; */
   }
 
   > div {
@@ -40,7 +42,7 @@ export const ControllersWrapper = styled.div`
         height: 20px;
         background: none;
         border: none;
-        color: #fff;
+        /* color: #fff; */
       }
     }
     span {
