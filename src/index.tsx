@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { ThemeContextProvider } from './hooks/theme/ToggleThemeContext';
+import { TimerProvider } from './hooks/timer/TimerContext-copy';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeContextProvider>
-      <App />
+      <TimerProvider>
+        <App />
+      </TimerProvider>
     </ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),
