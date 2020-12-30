@@ -1,76 +1,49 @@
-/* eslint-disable react/jsx-filename-extension */
-import * as React from 'react';
-
-type Action = { type: 'increment' | 'decrement' | 'play' };
-// eslint-disable-next-line no-unused-vars
-type Dispatch = (action: Action) => void;
-type State = { seconds: number };
-type TimerProviderProps = { children: React.ReactNode };
+import React, { createContext, useState } from 'react';
 // import usePersistedState from '../usePersistedState';
 
-// interface TimerContextData {
-//   seconds: number;
-// }
+type TimerProviderProps = { children: React.ReactNode };
 
-// export const TimerContext = createContext<TimerContextData>(
-//   {} as TimerContextData,
-// );
+type TimerContextProps = {
+  session: number;
+  break: number;
+  longBreak: number;
+  time: TimeProps;
+  label: string;
+  isActive: boolean;
+};
 
-// export const TimerProvider: React.FC = ({ children }) => {
-//   const [minutes, setMinutes] = usePersistedState('timer', 25 * 60);
+type TimerContextState = {
+  seconds: TimerContextProps;
+  setSeconds: React.Dispatch<React.SetStateAction<TimerContextProps>>;
+};
 
-//   return (
-//     <TimerContext.Provider value={{ minutes }}>
-//       {children}
-//     </TimerContext.Provider>
-//   );
-// };
+type TimeProps = {
+  startingTime: number;
+  currentTime: number;
+};
 
-const TimerStateContext = React.createContext<State | undefined>(undefined);
-const TimerDispatchContext = React.createContext<Dispatch | undefined>(
-  undefined,
-);
+const defaultTimer: TimerContextProps = {
+  session: 25,
+  break: 5,
+  longBreak: 20,
+  time: { currentTime: 25, startingTime: 25 },
+  label: 'Focus',
+  isActive: false,
+};
 
-function timerReducer(state: State, action: Action) {
-  switch (action.type) {
-    case 'increment': {
-      return { seconds: state.seconds };
-    }
-    case 'decrement': {
-      return { seconds: state.seconds };
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
-    }
-  }
-}
+const defautTimerState: TimerContextState = {
+  seconds: defaultTimer,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setSeconds: (): void => {},
+};
+export const TimerContext = createContext<TimerContextState>(defautTimerState);
 
-function TimerProvider({ children }: TimerProviderProps) {
-  const [state, dispatch] = React.useReducer(timerReducer, {
-    seconds: 25 * 60,
-  });
+export const TimerProvider = ({ children }: TimerProviderProps) => {
+  const [seconds, setSeconds] = useState<TimerContextProps>(defaultTimer);
+
   return (
-    <TimerStateContext.Provider value={state}>
-      <TimerDispatchContext.Provider value={dispatch}>
-        {children}
-      </TimerDispatchContext.Provider>
-    </TimerStateContext.Provider>
+    <TimerContext.Provider value={{ seconds, setSeconds }}>
+      {children}
+    </TimerContext.Provider>
   );
-}
-
-function useTimerState() {
-  const context = React.useContext(TimerStateContext);
-  if (context === undefined) {
-    throw new Error('useCountState must be used within a CountProvider');
-  }
-  return context;
-}
-
-function useTimerDispatch() {
-  const context = React.useContext(TimerDispatchContext);
-  if (context === undefined) {
-    throw new Error('useCountDispatch must be used within a CountProvider');
-  }
-  return context;
-}
-export { TimerProvider, useTimerState, useTimerDispatch };
+};

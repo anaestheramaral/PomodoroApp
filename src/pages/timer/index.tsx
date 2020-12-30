@@ -1,75 +1,100 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { FaPlay, FaUndoAlt, FaStepForward, FaPause } from 'react-icons/fa';
 import useSound from 'use-sound';
 import { Circle, Container, TimerContainer } from './style';
 import NavBar from '../../components/navbar';
 import Button from '../../components/button';
 import doneAudio from '../../assets/done-notification.mp3';
+import { TimerContext } from '../../hooks/timer/TimerContext';
 
 const TimerPomodoro: React.FC = () => {
-  const [seconds, setSeconds] = useState(25 * 60);
-  const [label, setLabel] = useState('Focus');
-  const [isRunning, setIsRunning] = useState(false);
+  const { seconds, setSeconds } = useContext(TimerContext);
   const [count, setCount] = useState(1);
 
   const [play] = useSound(doneAudio);
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (isRunning && seconds > 0) {
-        setSeconds(s => s - 1);
+      if (seconds.isActive === true && seconds.time.currentTime > 0) {
+        setSeconds({
+          ...seconds,
+          time: {
+            startingTime: seconds.time.startingTime,
+            currentTime: seconds.time.currentTime - 1,
+          },
+        });
       }
-      if (seconds === 0) {
+      if (seconds.time.currentTime === 0) {
         play();
+        // setSeconds({ ...seconds, isActive: false });
         handleSwitch();
-        if (label === 'Focus') {
-          alert('Time for a Break! ☕');
-        } else {
-          alert('Time to focus! 🎯');
+        if (seconds.label !== 'Focus') {
           setCount(c => (c % 4) + 1);
+          alert('Time to focus! 🎯');
+        } else {
+          alert('Time for a Break! ☕');
         }
       }
     }, 1000);
     return () => {
       clearInterval(id);
     };
-  }, [isRunning, seconds, play, label]);
-
-  function startTimer() {
-    setIsRunning(true);
-  }
-  function pauseTimer() {
-    setIsRunning(false);
-  }
-  function resetTimer() {
-    setIsRunning(false);
-
-    if (label === 'Break') {
-      if (count === 4) {
-        setSeconds(20 * 60);
-      } else {
-        setSeconds(5 * 60);
-      }
-    } else {
-      setSeconds(25 * 60);
-    }
-  }
+  }, [seconds, play]);
 
   const handleSwitch = () => {
-    setIsRunning(false);
-    if (label === 'Focus') {
-      setLabel('Break');
+    if (seconds.label === 'Focus') {
       if (count === 4) {
-        setSeconds(20 * 60);
+        setSeconds({
+          ...seconds,
+          time: {
+            currentTime: seconds.longBreak,
+            startingTime: seconds.longBreak,
+          },
+          label: 'Break',
+          isActive: false,
+        });
       } else {
-        setSeconds(5 * 60);
+        // alert('Time for a Break! ☕');
+        setSeconds({
+          ...seconds,
+          time: {
+            currentTime: seconds.break,
+            startingTime: seconds.break,
+          },
+          label: 'Break',
+          isActive: false,
+        });
       }
     } else {
-      setLabel('Focus');
-      setSeconds(25 * 60);
+      // alert('Time to focus! 🎯');
+      setSeconds({
+        ...seconds,
+        time: {
+          startingTime: seconds.session,
+          currentTime: seconds.session,
+        },
+        label: 'Focus',
+        isActive: false,
+      });
     }
   };
+  function startTimer() {
+    setSeconds({ ...seconds, isActive: true });
+  }
+  function pauseTimer() {
+    setSeconds({ ...seconds, isActive: false });
+  }
+  function resetTimer() {
+    setSeconds({
+      ...seconds,
+      isActive: false,
+      time: {
+        startingTime: seconds.time.startingTime,
+        currentTime: seconds.time.startingTime,
+      },
+    });
+  }
 
   return (
     <>
@@ -79,9 +104,11 @@ const TimerPomodoro: React.FC = () => {
           <Circle>
             <div>
               <strong>
-                {`${Math.floor(seconds / 60)}:${`00${seconds % 60}`.slice(-2)}`}
+                {`${Math.floor(seconds.time.currentTime / 60)}:${`00${
+                  seconds.time.currentTime % 60
+                }`.slice(-2)}`}
               </strong>
-              <p>{label}</p>
+              <p>{seconds.label}</p>
             </div>
           </Circle>
           <p>
@@ -95,17 +122,17 @@ const TimerPomodoro: React.FC = () => {
 
             <Button
               type="button"
-              onClick={isRunning ? pauseTimer : startTimer}
+              onClick={seconds.isActive ? pauseTimer : startTimer}
               className="Play"
             >
-              {isRunning ? <FaPause /> : <FaPlay />}
+              {seconds.isActive ? <FaPause /> : <FaPlay />}
             </Button>
 
             <Button
               type="button"
               onClick={() => {
                 handleSwitch();
-                if (label === 'Break') {
+                if (seconds.label === 'Break') {
                   setCount(c => (c % 4) + 1);
                 }
               }}

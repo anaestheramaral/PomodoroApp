@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 type Action = {
-  type: 'increment' | 'decrement' | 'incrementMinute' | 'decrementMinute';
+  type: 'decrement' | 'incrementMinute' | 'decrementMinute';
 };
 // eslint-disable-next-line no-unused-vars
 type Dispatch = (action: Action) => void;
@@ -16,9 +16,6 @@ const TimerDispatchContext = React.createContext<Dispatch | undefined>(
 
 function timerReducer(state: State, action: Action) {
   switch (action.type) {
-    case 'increment': {
-      return { seconds: state.seconds + 1 };
-    }
     case 'decrement': {
       return { seconds: state.seconds - 1 };
     }
@@ -36,8 +33,9 @@ function timerReducer(state: State, action: Action) {
 
 function TimerProvider({ children }: TimerProviderProps) {
   const [state, dispatch] = React.useReducer(timerReducer, {
-    seconds: 25 * 60,
+    seconds: 5,
   });
+
   return (
     <TimerStateContext.Provider value={state}>
       <TimerDispatchContext.Provider value={dispatch}>

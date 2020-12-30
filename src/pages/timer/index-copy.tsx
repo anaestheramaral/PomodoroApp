@@ -23,12 +23,13 @@ const TimerPomodoro: React.FC = () => {
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (isRunning && second > 0) {
+      if (isRunning && seconds > 0) {
         // setSecond(s => s - 1);
         dispatch({ type: 'decrement' });
       }
-      if (second === 0) {
+      if (seconds === 0) {
         play();
+        setIsRunning(false);
         handleSwitch();
         if (label === 'Focus') {
           alert('Time for a Break! ☕');
