@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-curly-newline */
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 // import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
 import Switch from 'react-switch';
 import { shade } from 'polished';
 import { Container, ControllersWrapper, Wrapper } from './style';
 import useToggleTheme from '../../hooks/theme/useToggleTheme';
-// import {
-//   useTimerState,
-//   useTimerDispatch,
-// } from '../../hooks/timer/TimerContext-copy';
+import {
+  useStartDispatch,
+  useStartState,
+} from '../../hooks/autoStart/StartContext';
 import { TimerContext } from '../../hooks/timer/TimerContext';
 
 const Configs: React.FC = () => {
@@ -20,10 +20,9 @@ const Configs: React.FC = () => {
   // const [shortBreak, setShortBreak] = useState(5);
   // const [longBreak, setLongBreak] = useState(20);
 
-  const [checkedAutoPlay, setCheckedAutoPlay] = useState(false);
-
   const { toggleTheme } = useToggleTheme();
-  // const dispach = useTimerDispatch();
+  const dispach = useStartDispatch();
+  const { autoStart } = useStartState();
   // const { seconds } = useTimerState();
 
   return (
@@ -153,8 +152,10 @@ const Configs: React.FC = () => {
         <strong>Auto start next round?</strong>
         <Switch
           id="auto"
-          checked={checkedAutoPlay}
-          onChange={() => setCheckedAutoPlay(!checkedAutoPlay)}
+          checked={autoStart === true}
+          onChange={() => dispach({ type: 'toggleStart' })}
+          offColor={shade(0.15, theme.colors.secondary)}
+          onColor={theme.colors.primary}
         />
       </Wrapper>
       <Wrapper>

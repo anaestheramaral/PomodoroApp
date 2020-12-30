@@ -7,13 +7,14 @@ import NavBar from '../../components/navbar';
 import Button from '../../components/button';
 import doneAudio from '../../assets/done-notification.mp3';
 import { TimerContext } from '../../hooks/timer/TimerContext';
+import { useStartState } from '../../hooks/autoStart/StartContext';
 
 const TimerPomodoro: React.FC = () => {
   const { seconds, setSeconds } = useContext(TimerContext);
   const [count, setCount] = useState(1);
 
   const [play] = useSound(doneAudio);
-
+  const { autoStart } = useStartState();
   useEffect(() => {
     const id = setInterval(() => {
       if (seconds.isActive === true && seconds.time.currentTime > 0) {
@@ -48,11 +49,11 @@ const TimerPomodoro: React.FC = () => {
         setSeconds({
           ...seconds,
           time: {
-            currentTime: seconds.longBreak,
             startingTime: seconds.longBreak,
+            currentTime: seconds.longBreak,
           },
           label: 'Break',
-          isActive: false,
+          isActive: autoStart,
         });
       } else {
         // alert('Time for a Break! ☕');
@@ -63,7 +64,7 @@ const TimerPomodoro: React.FC = () => {
             startingTime: seconds.break,
           },
           label: 'Break',
-          isActive: false,
+          isActive: autoStart,
         });
       }
     } else {
@@ -75,7 +76,7 @@ const TimerPomodoro: React.FC = () => {
           currentTime: seconds.session,
         },
         label: 'Focus',
-        isActive: false,
+        isActive: autoStart,
       });
     }
   };
@@ -88,7 +89,7 @@ const TimerPomodoro: React.FC = () => {
   function resetTimer() {
     setSeconds({
       ...seconds,
-      isActive: false,
+      isActive: autoStart,
       time: {
         startingTime: seconds.time.startingTime,
         currentTime: seconds.time.startingTime,
