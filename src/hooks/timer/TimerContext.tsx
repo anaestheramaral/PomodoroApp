@@ -1,5 +1,7 @@
-import React, { createContext, useState } from 'react';
-// import usePersistedState from '../usePersistedState';
+// import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
+
+import usePersistedState from '../usePersistedState';
 
 type TimerProviderProps = { children: React.ReactNode };
 
@@ -23,10 +25,10 @@ type TimeProps = {
 };
 
 const defaultTimer: TimerContextProps = {
-  session: 25,
-  break: 5,
-  longBreak: 20,
-  time: { currentTime: 25, startingTime: 25 },
+  session: 25 * 60,
+  break: 5 * 60,
+  longBreak: 20 * 60,
+  time: { currentTime: 25 * 60, startingTime: 25 * 60 },
   label: 'Focus',
   isActive: false,
 };
@@ -39,7 +41,10 @@ const defautTimerState: TimerContextState = {
 export const TimerContext = createContext<TimerContextState>(defautTimerState);
 
 export const TimerProvider = ({ children }: TimerProviderProps) => {
-  const [seconds, setSeconds] = useState<TimerContextProps>(defaultTimer);
+  const [seconds, setSeconds] = usePersistedState<TimerContextProps>(
+    '@timer',
+    defaultTimer,
+  );
 
   return (
     <TimerContext.Provider value={{ seconds, setSeconds }}>

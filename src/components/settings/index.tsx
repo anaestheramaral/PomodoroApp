@@ -13,17 +13,12 @@ import {
 import { TimerContext } from '../../hooks/timer/TimerContext';
 
 const Configs: React.FC = () => {
-  // const [pomodoro, setPomodoro] = useState(25);
   const theme = useContext(ThemeContext);
   const { seconds, setSeconds } = useContext(TimerContext);
-
-  // const [shortBreak, setShortBreak] = useState(5);
-  // const [longBreak, setLongBreak] = useState(20);
 
   const { toggleTheme } = useToggleTheme();
   const dispach = useStartDispatch();
   const { autoStart } = useStartState();
-  // const { seconds } = useTimerState();
 
   return (
     <Container>
@@ -31,22 +26,17 @@ const Configs: React.FC = () => {
       <ControllersWrapper>
         <div>
           <h2>Focus Time</h2>
-          {/* <span>{pomodoro}</span> */}
-          <span>{seconds.session}</span>
+          <span>{seconds.session / 60}</span>
           <div>
-            {/* <button
-              type="button"
-              onClick={() => dispach({ type: 'incrementMinute' })}
-            > */}
             <button
               type="button"
               onClick={() =>
                 setSeconds({
                   ...seconds,
-                  session: seconds.session + 1,
+                  session: seconds.session + 60,
                   time: {
-                    startingTime: seconds.session + 1,
-                    currentTime: seconds.session + 1,
+                    startingTime: seconds.session + 60,
+                    currentTime: seconds.session + 60,
                   },
                 })
               }
@@ -58,35 +48,32 @@ const Configs: React.FC = () => {
               onClick={() =>
                 setSeconds({
                   ...seconds,
-                  session: seconds.session - 1,
+                  session: seconds.session - 60,
                   time: {
-                    startingTime: seconds.session - 1,
-                    currentTime: seconds.session - 1,
+                    startingTime: seconds.session - 60,
+                    currentTime: seconds.session - 60,
                   },
                 })
               }
             >
               -
             </button>
-            {/* <button type="button" onClick={() => setPomodoro(p => p - 1)}>
-              -
-            </button> */}
           </div>
         </div>
 
         <div>
           <h2>Short Break</h2>
-          <span>{seconds.break}</span>
+          <span>{seconds.break / 60}</span>
           <div>
             <button
               type="button"
               onClick={() =>
                 setSeconds({
                   ...seconds,
-                  break: seconds.break + 1,
+                  break: seconds.break + 60,
                   time: {
-                    startingTime: seconds.break + 1,
-                    currentTime: seconds.break + 1,
+                    startingTime: seconds.break + 60,
+                    currentTime: seconds.break + 60,
                   },
                 })
               }
@@ -98,10 +85,10 @@ const Configs: React.FC = () => {
               onClick={() =>
                 setSeconds({
                   ...seconds,
-                  break: seconds.break - 1,
+                  break: seconds.break - 60,
                   time: {
-                    startingTime: seconds.break - 1,
-                    currentTime: seconds.break - 1,
+                    startingTime: seconds.break - 60,
+                    currentTime: seconds.break - 60,
                   },
                 })
               }
@@ -113,17 +100,17 @@ const Configs: React.FC = () => {
 
         <div>
           <h2>Long Break </h2>
-          <span>{seconds.longBreak}</span>
+          <span>{seconds.longBreak / 60}</span>
           <div>
             <button
               type="button"
               onClick={() =>
                 setSeconds({
                   ...seconds,
-                  longBreak: seconds.longBreak + 1,
+                  longBreak: seconds.longBreak + 60,
                   time: {
-                    startingTime: seconds.longBreak + 1,
-                    currentTime: seconds.longBreak + 1,
+                    startingTime: seconds.longBreak + 60,
+                    currentTime: seconds.longBreak + 60,
                   },
                 })
               }
@@ -135,10 +122,10 @@ const Configs: React.FC = () => {
               onClick={() =>
                 setSeconds({
                   ...seconds,
-                  longBreak: seconds.longBreak - 1,
+                  longBreak: seconds.longBreak - 60,
                   time: {
-                    startingTime: seconds.longBreak - 1,
-                    currentTime: seconds.longBreak - 1,
+                    startingTime: seconds.longBreak - 60,
+                    currentTime: seconds.longBreak - 60,
                   },
                 })
               }
@@ -151,7 +138,7 @@ const Configs: React.FC = () => {
       <Wrapper>
         <strong>Auto start next round?</strong>
         <Switch
-          id="auto"
+          id="autoSwitch"
           checked={autoStart === true}
           onChange={() => dispach({ type: 'toggleStart' })}
           offColor={shade(0.15, theme.colors.secondary)}
@@ -161,13 +148,31 @@ const Configs: React.FC = () => {
       <Wrapper>
         <strong>Dark mode</strong>
         <Switch
-          id="dark"
+          id="darkSwitch"
           checked={theme.title !== 'light'}
           onChange={toggleTheme}
           offColor={shade(0.15, theme.colors.secondary)}
           onColor={theme.colors.primary}
         />
       </Wrapper>
+      <button
+        type="button"
+        onClick={() =>
+          setSeconds({
+            ...seconds,
+            session: 25 * 60,
+            break: 5 * 60,
+            longBreak: 20 * 60,
+            time: {
+              startingTime: seconds.session,
+              currentTime: seconds.session,
+            },
+            label: 'Focus',
+          })
+        }
+      >
+        Reset Timer Settings
+      </button>
     </Container>
   );
 };

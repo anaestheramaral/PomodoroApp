@@ -1,11 +1,32 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
+import { NavLink } from 'react-router-dom';
+
+export const StyledNavLink = styled(NavLink)`
+  svg {
+    position: relative;
+    top: 100px;
+    width: 60px;
+    color: ${props => props.theme.colors.icons};
+    /* color: #ececec; */
+    text-decoration: none;
+    opacity: 0.8;
+
+    &:hover {
+      color: ${shade(0.2, '#a8dadc')};
+    }
+  }
+  &.selected {
+    svg {
+      color: ${props => props.theme.colors.secondary};
+    }
+  }
+`;
 
 export const Container = styled.div`
-  /* background-color: #3f51b5; */
   background-color: ${props => props.theme.colors.primary};
   height: 100vh;
-  width: 10vw;
+  width: 120px;
 `;
 
 export const Nav = styled.nav`
@@ -24,22 +45,6 @@ export const Nav = styled.nav`
           margin-top: 100px;
         }
       }
-      svg {
-        position: relative;
-        top: 100px;
-        width: 60px;
-        color: ${props => props.theme.colors.icons};
-        /* color: #ececec; */
-
-        &:hover {
-          color: ${shade(0.2, '#a8dadc')};
-        }
-      }
     }
-  }
-  a,
-  Link {
-    text-decoration: none;
-    opacity: 0.8;
   }
 `;
