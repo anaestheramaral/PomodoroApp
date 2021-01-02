@@ -39,6 +39,7 @@ export const Container = styled.div<Props>`
   top: 0px;
   left: 0px;
   background: ${props => (props.active ? props.theme.colors.primary : 'none')};
+  z-index: 1;
 
   /* background-color: none; */
   @media (min-width: ${size.medium}) {
