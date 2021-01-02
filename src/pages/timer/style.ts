@@ -12,6 +12,10 @@ export const TimerContainer = styled.div`
   display: block;
   width: 450px;
   height: 80vh;
+  @media (min-width: 641px) {
+    padding-left: 54px;
+  }
+
   /* border: 1px solid black; */
 
   display: flex;
@@ -48,7 +52,6 @@ export const Circle = styled.div`
   width: 350px;
   height: 350px;
 
-  /* background-color: #3f51b5; */
   background-color: ${props => props.theme.colors.primary};
   border-radius: 50%;
   display: flex;
@@ -56,7 +59,6 @@ export const Circle = styled.div`
   align-items: center;
 
   div {
-    /* background-color: #f2f2fa; */
     background-color: ${props => props.theme.colors.background};
     width: 90%;
     height: 90%;
@@ -67,6 +69,7 @@ export const Circle = styled.div`
     justify-content: center;
     align-items: center;
     color: ${props => props.theme.colors.text};
+    box-shadow: inset 0 0 10px ${props => props.theme.colors.primary};
 
     strong {
       font-size: 72px;

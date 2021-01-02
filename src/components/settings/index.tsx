@@ -143,6 +143,7 @@ const Configs: React.FC = () => {
           onChange={() => dispach({ type: 'toggleStart' })}
           offColor={shade(0.15, theme.colors.secondary)}
           onColor={theme.colors.primary}
+          height={26}
         />
       </Wrapper>
       <Wrapper>
@@ -153,6 +154,7 @@ const Configs: React.FC = () => {
           onChange={toggleTheme}
           offColor={shade(0.15, theme.colors.secondary)}
           onColor={theme.colors.primary}
+          height={26}
         />
       </Wrapper>
       <button
@@ -164,8 +166,8 @@ const Configs: React.FC = () => {
             break: 5 * 60,
             longBreak: 20 * 60,
             time: {
-              startingTime: seconds.session,
-              currentTime: seconds.session,
+              startingTime: 25 * 60,
+              currentTime: 25 * 60,
             },
             label: 'Focus',
           })

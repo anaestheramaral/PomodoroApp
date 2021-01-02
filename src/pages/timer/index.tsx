@@ -2,8 +2,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { FaPlay, FaUndoAlt, FaStepForward, FaPause } from 'react-icons/fa';
 import useSound from 'use-sound';
+// import { useSpring, animated } from 'react-spring';
 import { Circle, Container, TimerContainer } from './style';
-import NavBar from '../../components/navbar';
 import Button from '../../components/button';
 import doneAudio from '../../assets/done-notification.mp3';
 import { TimerContext } from '../../hooks/timer/TimerContext';
@@ -100,7 +100,7 @@ const TimerPomodoro: React.FC = () => {
   return (
     <>
       <Container>
-        <NavBar />
+        {/* <NavBar /> */}
         <TimerContainer>
           <Circle>
             <div>
@@ -117,12 +117,13 @@ const TimerPomodoro: React.FC = () => {
             /4
           </p>
           <div>
-            <Button type="button" onClick={resetTimer}>
+            <Button type="button" onClick={resetTimer} title="reset">
               <FaUndoAlt />
             </Button>
 
             <Button
               type="button"
+              title={seconds.isActive ? 'pause' : 'play'}
               onClick={seconds.isActive ? pauseTimer : startTimer}
               className="Play"
             >
@@ -131,6 +132,7 @@ const TimerPomodoro: React.FC = () => {
 
             <Button
               type="button"
+              title="next"
               onClick={() => {
                 handleSwitch();
                 if (seconds.label === 'Break') {

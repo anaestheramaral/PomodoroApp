@@ -21,4 +21,14 @@ export const Container = styled.button`
   &:hover {
     background: ${props => shade(0.15, props.theme.colors.buttonsBkg)};
   }
+
+  &:focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    border-color: ${props => props.theme.colors.secondary};
+
+    box-shadow: 0 0 4px 2px ${props => shade(0.2, props.theme.colors.secondary)};
+  }
 `;

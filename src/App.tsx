@@ -2,26 +2,22 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { Beforeunload } from 'react-beforeunload';
 import Routes from './routes';
 import GlobalStyle from './styles/global';
-
 import useToggleTheme from './hooks/theme/useToggleTheme';
 
 const App: React.FC = () => {
-  // const [theme, setTheme] = useState(light);
-
-  // const toggleTheme = () => {
-  //   setTheme(theme.title === 'light' ? dark : light);
-  // };
-
   const { theme } = useToggleTheme();
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Routes />
-      </Router>
-      <GlobalStyle />
-    </ThemeProvider>
+    <Beforeunload onBeforeunload={() => "You'll lose your data!"}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Router>
+          <Routes />
+        </Router>
+      </ThemeProvider>
+    </Beforeunload>
   );
 };
 

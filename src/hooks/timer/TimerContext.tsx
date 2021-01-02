@@ -1,7 +1,7 @@
 // import React, { createContext, useState } from 'react';
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
-import usePersistedState from '../usePersistedState';
+// import usePersistedState from '../usePersistedState';
 
 type TimerProviderProps = { children: React.ReactNode };
 
@@ -41,10 +41,7 @@ const defautTimerState: TimerContextState = {
 export const TimerContext = createContext<TimerContextState>(defautTimerState);
 
 export const TimerProvider = ({ children }: TimerProviderProps) => {
-  const [seconds, setSeconds] = usePersistedState<TimerContextProps>(
-    '@timer',
-    defaultTimer,
-  );
+  const [seconds, setSeconds] = useState<TimerContextProps>(defaultTimer);
 
   return (
     <TimerContext.Provider value={{ seconds, setSeconds }}>
