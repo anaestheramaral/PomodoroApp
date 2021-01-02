@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/plannerdoro/static/js/main.4ecd84b4.chunk.js",
+    "main.js.map": "/plannerdoro/static/js/main.4ecd84b4.chunk.js.map",
+    "runtime-main.js": "/plannerdoro/static/js/runtime-main.0c221492.js",
+    "runtime-main.js.map": "/plannerdoro/static/js/runtime-main.0c221492.js.map",
+    "static/js/2.5980f443.chunk.js": "/plannerdoro/static/js/2.5980f443.chunk.js",
+    "static/js/2.5980f443.chunk.js.map": "/plannerdoro/static/js/2.5980f443.chunk.js.map",
+    "static/js/3.fc743937.chunk.js": "/plannerdoro/static/js/3.fc743937.chunk.js",
+    "static/js/3.fc743937.chunk.js.map": "/plannerdoro/static/js/3.fc743937.chunk.js.map",
+    "index.html": "/plannerdoro/index.html",
+    "static/js/2.5980f443.chunk.js.LICENSE.txt": "/plannerdoro/static/js/2.5980f443.chunk.js.LICENSE.txt",
+    "static/js/3.fc743937.chunk.js.LICENSE.txt": "/plannerdoro/static/js/3.fc743937.chunk.js.LICENSE.txt",
+    "static/media/done-notification.fc6582f3.mp3": "/plannerdoro/static/media/done-notification.fc6582f3.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c221492.js",
+    "static/js/2.5980f443.chunk.js",
+    "static/js/main.4ecd84b4.chunk.js"
+  ]
+}
