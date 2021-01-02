@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from './style';
 import Sett from '../../components/settings';
-import Nav from '../../components/navbar';
+// import Nav from '../../components/navbar';
 
 const Settings: React.FC = () => {
   return (
     <Container>
-      <Nav />
+      {/* <Nav /> */}
       <Sett />
     </Container>
   );

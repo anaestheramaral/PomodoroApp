@@ -1,47 +1,58 @@
 import React from 'react';
-import { FaRegClock, FaUserCircle, FaRegChartBar } from 'react-icons/fa';
+import {
+  FaRegClock,
+  FaUserCircle,
+  FaRegChartBar,
+  FaInfoCircle,
+} from 'react-icons/fa';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import { Container, Nav } from './style';
+// import { GiTomato } from 'react-icons/gi';
+// import { Link } from 'react-router-dom';
+import { Container, Nav, StyledNavLink } from './style';
 
 const NavBar: React.FC = () => {
   const icons = {
-    LogIn: <FaUserCircle size={32} />,
-    Timer: <FaRegClock size={32} />,
-    Stats: <FaRegChartBar size={32} />,
-    Settings: <FiSettings size={32} />,
-    LogOut: <FiLogOut size={32} />,
+    LogIn: <FaUserCircle size={32} title="logIn" />,
+    Timer: <FaRegClock size={32} title="timer" />,
+    Stats: <FaRegChartBar size={32} title="Statistics" />,
+    Settings: <FiSettings size={32} title="settings" />,
+    LogOut: <FiLogOut size={20} title="LogOut" />,
+    About: <FaInfoCircle size={32} title="about" />,
   };
 
   return (
     <Container>
       <Nav>
         <ul>
+          {/* <li>
+            <StyledNavLink to="#a" activeClassName="selected">
+              {icons.LogIn}
+            </StyledNavLink>
+          </li> */}
+
           <li>
-            <a href="#a">
-              <FaUserCircle size={32} />
-            </a>
+            <StyledNavLink exact to="/" activeClassName="selected">
+              {icons.Timer}
+            </StyledNavLink>
           </li>
 
           <li>
-            <Link to="/">{icons.Timer}</Link>
+            <StyledNavLink to="/settings" activeClassName="selected">
+              {icons.Settings}
+            </StyledNavLink>
           </li>
 
           <li>
-            <Link to="/settings">{icons.Settings}</Link>
+            <StyledNavLink to="/about" activeClassName="selected">
+              {icons.About}
+            </StyledNavLink>
           </li>
-
+          {/* <li>
+            <StyledNavLink to="#a">{icons.Stats}</StyledNavLink>
+          </li>
           <li>
-            <a href="#a">
-              <FaRegChartBar size={32} />
-            </a>
-          </li>
-
-          <li>
-            <a href="#a">
-              <FiLogOut size={20} className="logOut" />
-            </a>
-          </li>
+            <StyledNavLink to="#a">{icons.LogOut}</StyledNavLink>
+          </li> */}
         </ul>
       </Nav>
     </Container>

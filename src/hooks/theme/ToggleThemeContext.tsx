@@ -6,9 +6,6 @@ import usePersistedState from '../usePersistedState';
 import light from '../../styles/themes/light';
 import dark from '../../styles/themes/dark';
 
-import { KEY_LOCAL_STORAGE_THEME } from '../../constants/localStorage';
-// import { LIGHT } from '../constants/theme';
-
 interface ThemeContextData {
   toggleTheme(): void;
   theme: DefaultTheme;
@@ -17,10 +14,7 @@ interface ThemeContextData {
 const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
 
 const ThemeContextProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = usePersistedState<DefaultTheme>(
-    KEY_LOCAL_STORAGE_THEME,
-    light,
-  );
+  const [theme, setTheme] = usePersistedState<DefaultTheme>('@theme', light);
 
   function toggleTheme() {
     setTheme(theme.title === 'light' ? dark : light);

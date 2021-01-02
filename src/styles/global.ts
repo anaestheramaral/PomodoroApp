@@ -6,6 +6,10 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+
+    &::not(.focus-visible) {
+      outline: none;
+    }
     }
 
   body{
