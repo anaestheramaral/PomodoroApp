@@ -63,5 +63,7 @@ export const ContentWrapper = styled.div`
     position: relative;
     left: 16px;
     padding: 30px;
+    height: max-content;
+    overflow: unset;
   }
 `;
