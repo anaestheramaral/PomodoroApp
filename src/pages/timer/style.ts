@@ -13,7 +13,7 @@ export const TimerContainer = styled.div`
   display: block;
   max-width: 450px;
   /* height: 80vh; */
-  padding-right: 18px;
+  /* padding-right: 18px; */
   @media (min-width: 641px) {
     /* padding-left: 108px; */
     padding-right: 0;

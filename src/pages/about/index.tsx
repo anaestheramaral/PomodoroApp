@@ -8,14 +8,14 @@ const About: React.FC = () => {
       <ContentWrapper>
         <p>
           The
-          <strong> Pomodoro Techinique </strong>
+          <strong> Pomodoro Technique </strong>
           is a time managment method developed by the Italian Francesco Cirilo,
           who was at the time a student.
         </p>
         <br />
         <p>
           The Method consists on cicles of concentration and breaks. The focus
-          durations is usually set to be 25 minutes, and during this time all
+          period is usually set to be 25 minutes, and during this time all
           distractions should be avoided.
         </p>
         <br />
