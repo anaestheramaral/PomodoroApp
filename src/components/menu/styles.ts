@@ -40,7 +40,9 @@ export const Container = styled.div<Props>`
   left: 0px;
   background: ${props => (props.active ? props.theme.colors.primary : 'none')};
   z-index: 1;
-
+  span {
+    color: #fafaf2;
+  }
   /* background-color: none; */
   @media (min-width: ${size.medium}) {
     /* position: inherit; */

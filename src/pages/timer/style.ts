@@ -2,18 +2,22 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100vw;
   align-items: center;
+  justify-content: center;
   height: 100vh;
 `;
 
 export const TimerContainer = styled.div`
   display: block;
-  width: 450px;
-  height: 80vh;
+  max-width: 450px;
+  /* height: 80vh; */
+  padding-right: 18px;
   @media (min-width: 641px) {
-    padding-left: 54px;
+    /* padding-left: 108px; */
+    padding-right: 0;
+    /* padding-left: 18px; */
   }
 
   /* border: 1px solid black; */

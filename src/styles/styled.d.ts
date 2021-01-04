@@ -14,5 +14,7 @@ declare module 'styled-components' {
       buttonsColor: string;
       buttonsBkg: string;
     };
+
+    fontWeight: number;
   }
 }

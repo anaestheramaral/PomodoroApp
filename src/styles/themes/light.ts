@@ -11,4 +11,6 @@ export default {
     buttonsColor: '#1d3557',
     buttonsBkg: '#F2F2FA',
   },
+
+  fontWeight: 400,
 };

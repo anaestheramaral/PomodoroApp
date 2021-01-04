@@ -12,7 +12,7 @@ export const Container = styled.button`
   background-color: ${props => props.theme.colors.buttonsBkg};
 
   color: ${props => props.theme.colors.text};
-  border: 2px solid #0d1b2a;
+  border: 2px solid ${props => props.theme.colors.primary};
 
   display: flex;
   justify-content: center;

@@ -20,11 +20,11 @@ export default createGlobalStyle`
   }
 
   body, input, button{
-    font: 16px Roboto, sans-serif;
+    font: 1rem Roboto, sans-serif;
+    font-weight: ${props => props.theme.fontWeight} ;
   }
 
-  strong, p {
-    /* color: #232129; */
+  strong, p, h1, h2, span {
     color: ${props => props.theme.colors.text};
   }
 

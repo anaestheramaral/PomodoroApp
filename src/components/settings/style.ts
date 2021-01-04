@@ -9,7 +9,12 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  padding: 30px;
+  height: 100vh;
+  @media (min-width: 641px) {
+    /* padding-left: 108px; */
+  }
+
+  /* padding: 30px; */
 
   > button {
     background-color: ${props => props.theme.colors.secondary};
